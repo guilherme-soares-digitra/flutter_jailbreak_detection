@@ -44,6 +44,18 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        
+        // Suporte para page size de 16KB (requisito do Android 15+)
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+    }
+    
+    // Configuração para suportar page size de 16KB
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = false
+        }
     }
 
     buildTypes {

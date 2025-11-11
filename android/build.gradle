@@ -35,6 +35,23 @@ android {
 
     defaultConfig {
         minSdkVersion 17
+        
+        // Suporte para page size de 16KB (requisito do Android 15+)
+        // Esta configuração garante que o plugin seja compatível com dispositivos
+        // que usam page size de 16KB, permitindo que apps Flutter que usam este plugin
+        // sejam compilados com suporte a 16KB
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+    }
+    
+    // Configuração para suportar page size de 16KB
+    // useLegacyPackaging = false garante que as bibliotecas nativas sejam
+    // empacotadas de forma compatível com page size de 16KB
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = false
+        }
     }
 
     kotlinOptions {
